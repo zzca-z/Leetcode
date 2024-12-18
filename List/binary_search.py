@@ -22,3 +22,11 @@ class Solution:
 
 solution = Solution()
 print(solution.binary_search([-2,1,5,9],0))
+
+#conclusion
+'''
+1. Bacause the beginning and ending parameters are not inlcuded in the variable, so recursive calling is not solvable.
+2. Use index, so the end_index should be len - 1.
+3. Then remember, middle return, less m-1, more m+1.
+4. the middle shoule inlcude the begin_index, which is not always 0.
+'''
