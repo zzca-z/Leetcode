@@ -46,5 +46,5 @@ class Solution:
 '''
 1. when using index, be careful about the empty list; also, when the index changes, be careful about the index exceeding the boud.
 2. insert(location, value), the first arg is location, and the second arg is value.
-3. 
+3. the order is not that important because we can call them in a different index order
 '''
