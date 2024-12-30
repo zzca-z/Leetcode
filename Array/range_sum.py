@@ -26,5 +26,8 @@ class Solution():
 sl = Solution()
 sl.rangeSum('Array/range_sum.txt', 'Array/range_sum_result.txt')
 
-
+#conclusion
+'''
+1. use map to handle reveriting str to int.
+'''
         
