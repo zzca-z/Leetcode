@@ -4,21 +4,51 @@ class LinkedNode:
         self.next = None
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self,*args):
         self.head = None
+        if args:
+            self.head = LinkedNode(args[0])
+            count = 0
+            current = self.head
+            while count < (len(args) - 1):
+                current.next = LinkedNode(args[count+1])
+                current = current.next
+                count += 1
         
-    def append(self, value):
-        if not self.head:
-            self.head = LinkedNode(value)
-            return
+    
+    def len(self):
+        count = 0
         current = self.head
+        while current:
+            count += 1
+            current = current.next
+        return count
+    
+    def append(self, *args):
+        if not self.head:
+            self.head = LinkedNode(args[0])
+
+        current = self.head
+        count = 0
         while current.next:
             current = current.next
-        current.next = LinkedNode(value)
+        for _ in args:
+            current.next = LinkedNode(args[count])
+            current = current.next
+            count += 1
     
     def get(self, index):
         current = self.head
         count = 0
+        if index >= self.len():
+            print("get: Out of index.")
+            return
+        if index < 0:
+            index = self.len() + index
+            if index < 0:
+                print("get: Out of index.")
+                return
+
         while current:
             if count == index:
                 return current.value
@@ -30,18 +60,27 @@ class LinkedList:
         current = self.head
         count = 0 
         original_next = None
+        if index > self.len():
+            print("insert: Out of index.")
+            return
+        if index < 0:
+            index = self.len() + index
+            if index < 0:
+                print("insert: Out of index.")
+                return
         if index == 0:
             self.head = LinkedNode(value)
             self.head.next = current
             return
-        while current:
-            if count == index-1:
-                original_next = current.next
-                current.next = LinkedNode(value)
-            elif count == index and original_next:
-                current.next = original_next
-            current = current.next
-            count += 1
+        else:
+            while current:
+                if count == index-1:
+                    original_next = current.next
+                    current.next = LinkedNode(value)
+                    current.next.next = original_next
+                    return
+                current = current.next
+                count += 1
     
     def show(self):
         current = self.head
@@ -53,10 +92,44 @@ class LinkedList:
                 output += f"{current.value} -> "
                 current = current.next
         print(output)
+    
+    def delet_index(self, index):
+        current = self.head
+        count = 0
+        if index >= self.len():
+            print("delet: Out of index.")
+            return
+        if index < 0:
+            index = self.len() + index
+            if index < 0:
+                print("delete: Out of index.")
+                return
+        if index == 0:
+            self.head = current.next
+        else:
+            while current:
+                if count == index - 1:
+                    current.next = current.next.next
+                    return
+                current = current.next
+                count += 1
+    
+    def delet_value(self, value):
+        current = self.head
+        while self.head.value == value:
+            self.head = current.next
+            current = self.head
+        
+        while current and current.next:
+            if current.next.value == value:
+                current.next = current.next.next
+            else:
+                current = current.next
 
-ll = LinkedList()
-ll.append(10)
-ll.append(20)
 
-ll.insert(15,1)
+
+
+ll = LinkedList(10,20,30)
+ll.append(5,10,30)
+
 ll.show()
