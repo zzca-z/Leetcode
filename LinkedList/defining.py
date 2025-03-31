@@ -126,10 +126,21 @@ class LinkedList:
             else:
                 current = current.next
 
+    def revert(self):
+        current = self.head
+        last = None
+        while current:
+            next = current.next
+            current.next = last
+            last = current
+            current = next
+        self.head = last
+         
+            
 
 
 
-ll = LinkedList(10,20,30)
-ll.append(5,10,30)
 
+ll = LinkedList(10)
+ll.revert()
 ll.show()
