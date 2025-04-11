@@ -24,6 +24,25 @@ class LinkedList:
             current = current.next
         return count
     
+    def add_head(self, *args):
+        if not self.head:
+            self.head = LinkedNode(args[-1])
+        
+            count = len(args) - 2
+            while count >= 0:
+                current = self.head
+                self.head = LinkedNode(args[count])
+                self.head.next = current
+                count -= 1
+        else:
+            count = len(args) - 1
+            while count >= 0:
+                current = self.head
+                self.head = LinkedNode(args[count])
+                self.head.next = current
+                count -= 1
+
+
     def append(self, *args):
         if not self.head:
             self.head = LinkedNode(args[0])
@@ -142,5 +161,5 @@ class LinkedList:
 
 
 ll = LinkedList(10)
-ll.revert()
+ll.add_head(20,30)
 ll.show()
