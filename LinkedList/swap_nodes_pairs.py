@@ -23,12 +23,10 @@ class Solution:
         return count
 
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        count = 0
         temp_head = ListNode()
         temp_head.next = head
         current = temp_head
-        lenth = self.len_ll(head)
-        while count + 2 <= lenth:
+        while current.next and current.next.next:
             first = current.next
             second = current.next.next
             new_first = current.next.next.next
@@ -37,7 +35,6 @@ class Solution:
             first.next = new_first
             current.next = second
             current = current.next.next
-            count += 2
 
         head = temp_head.next
         
@@ -63,13 +60,14 @@ class LinkedLikst:
             current = current.next
         print(output)
 
-ll = LinkedLikst()
+ll = LinkedLikst(1)
 ll.head.show()
 s = Solution()
 s.swapPairs(ll.head).show()
 
 '''
-1. assignment: when processing swap, backup the to be changed value firsh, so that the originial relationship can be maintained. And the assignment only align the left to the right, thus the new assignment to the left won't affect the right but not verce vice. Use the one that remians unchanged or changed last to be the assignment value at the right, this could avoid chain effection.
-2. becareful about the loop termination condition in case it get modified in the loop. make it a certain value instead of an expression could be safer.
-3. checking the main aspects first, like the loop times, then samller aspects.
+1. Assignment: when processing swap, backup the to be changed value firsh, so that the originial relationship can be maintained. And the assignment only align the left to the right, thus the new assignment to the left won't affect the right but not verce vice. Use the one that remians unchanged or changed last to be the assignment value at the right, this could avoid chain effection.
+2. Becareful about the loop termination condition in case it get modified in the loop. make it a certain value instead of an expression could be safer.
+3. Checking the main aspects first, like the loop times, then samller aspects.
+4. Use recursive judgment conditions is better than a global condition judgment
 '''
