@@ -81,3 +81,11 @@ lb.head.show()
 s = Solution()
 
 print(s.getIN_1loop(la.head, lb.head).value)
+
+
+'''
+1. In 2 layers loop, remember to break both layers once criteria is fullfilled.
+2. For linkedlist with intersection, the intersection must not be longer than the shorter list, so we can 
+    move the pointers to the head of shorter one and the corresponding place of the longer one, and then
+    move the two pointers together, avoiding 2 layers loop.
+'''
